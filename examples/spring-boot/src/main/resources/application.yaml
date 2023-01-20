@@ -1,0 +1,11 @@
+logging:
+  level:
+    org.camunda.community.extension.internalTaskHandler: INFO
+camunda:
+  bpm:
+    admin-user:
+      id: demo
+      password: demo
+      email: demo@demo.org
+      first-name: Demo
+      last-name: Demo
