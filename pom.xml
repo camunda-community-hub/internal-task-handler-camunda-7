@@ -27,7 +27,7 @@
     <project.build.resourceEncoding>${encoding}</project.build.resourceEncoding>
     <!-- versions -->
     <version.camunda>7.19.0</version.camunda>
-    <version.springBoot>2.7.7</version.springBoot>
+    <version.springBoot>3.1.5</version.springBoot>
     <version.camunda-bpm-assert>15.0.0</version.camunda-bpm-assert>
     <!-- maven plugins (not managed by parent) -->
     <plugin.version.function-maven-plugin>0.10.1</plugin.version.function-maven-plugin>
