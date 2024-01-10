@@ -113,7 +113,8 @@ public class InternalTaskClientSubscriptionLifecycle {
       try {
         return applicationContext.getBean(executorBeanName, ExecutorService.class);
       } catch (BeansException e) {
-        LOG.error("Did not find 'executorBeanName', not setting it.", e);
+        LOG.warn(
+            "Did not find executor with bean name '" + executorBeanName + "', ignoring it.", e);
       }
     }
     return null;
