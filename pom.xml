@@ -31,13 +31,14 @@
     <version.camunda-bpm-assert>15.0.0</version.camunda-bpm-assert>
     <!-- maven plugins (not managed by parent) -->
     <plugin.version.function-maven-plugin>0.10.1</plugin.version.function-maven-plugin>
-    <plugin.version.maven-enforcer-plugin>3.1.0</plugin.version.maven-enforcer-plugin>
+    <plugin.version.maven-enforcer-plugin>3.4.1</plugin.version.maven-enforcer-plugin>
     <plugin.version.maven-install-plugin>3.1.1</plugin.version.maven-install-plugin>
     <plugin.version.maven-resources-plugin>3.2.0</plugin.version.maven-resources-plugin>
     <plugin.version.maven-shade-plugin>3.4.1</plugin.version.maven-shade-plugin>
     <plugin.version.maven-surefire-plugin>3.2.3</plugin.version.maven-surefire-plugin>
     <plugin.version.spotless-maven-plugin>2.37.0</plugin.version.spotless-maven-plugin>
     <plugin.version.maven-war-plugin>3.3.2</plugin.version.maven-war-plugin>
+    <plugin.version.maven-site-plugin>3.12.1</plugin.version.maven-site-plugin>
   </properties>
 
   <dependencyManagement>
@@ -88,6 +89,11 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${plugin.version.maven-site-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <version>${plugin.version.maven-war-plugin}</version>
         </plugin>
@@ -118,7 +124,7 @@
               <!--
                 <dependencyConvergence />
               -->
-              <requirePluginVersion/>
+              <requirePluginVersions/>
             </rules>
           </configuration>
           <executions>
