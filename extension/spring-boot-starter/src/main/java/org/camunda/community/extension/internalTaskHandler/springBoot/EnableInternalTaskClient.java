@@ -6,13 +6,13 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({
+@ImportAutoConfiguration({
   InternalTaskClientSpringBootConfiguration.class,
   InternalTaskClientLifecycle.class,
   InternalTaskClientSubscriptionLifecycle.class,
