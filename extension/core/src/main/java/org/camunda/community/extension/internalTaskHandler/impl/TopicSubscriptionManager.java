@@ -176,6 +176,8 @@ public class TopicSubscriptionManager implements Runnable {
         }
       } else {
         LOG.error("There was no handler found for topic {}", externalTask.getTopicName());
+        externalTaskService.unlock(externalTask.getId());
+        externalTasks.remove(externalTask);
       }
     }
     runBackoffStrategy(externalTasks);
