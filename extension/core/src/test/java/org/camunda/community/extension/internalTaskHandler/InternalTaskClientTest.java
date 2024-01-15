@@ -49,6 +49,7 @@ public class InternalTaskClientTest {
         InternalTaskClientConfiguration.usingProperties(
             loadProperties(),
             externalTaskService(),
+            runtimeService(),
             InternalTaskClientConfiguration.DEFAULT_BACKOFF_STRATEGY,
             InternalTaskClientConfiguration.DEFAULT_EXECUTOR);
     assertThat(configuration.getWorkerId()).isEqualTo("MyWorkerId");

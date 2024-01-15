@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.concurrent.ExecutorService;
 import org.camunda.bpm.engine.ExternalTaskService;
 import org.camunda.bpm.engine.ProcessEngines;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.community.extension.internalTaskHandler.BackoffStrategy;
 import org.camunda.community.extension.internalTaskHandler.InternalTaskClientConfiguration;
 import org.camunda.community.extension.internalTaskHandler.builder.InternalTaskClientConfigurationBuilder;
@@ -12,6 +13,8 @@ public class InternalTaskClientConfigurationImpl extends InternalTaskClientPrope
     implements InternalTaskClientConfiguration, InternalTaskClientConfigurationBuilder {
   private ExternalTaskService externalTaskService =
       ProcessEngines.getDefaultProcessEngine(false).getExternalTaskService();
+  private RuntimeService runtimeService =
+      ProcessEngines.getDefaultProcessEngine(false).getRuntimeService();
   private BackoffStrategy backoffStrategy =
       InternalTaskClientConfiguration.DEFAULT_BACKOFF_STRATEGY;
 
@@ -22,6 +25,7 @@ public class InternalTaskClientConfigurationImpl extends InternalTaskClientPrope
   public InternalTaskClientConfigurationImpl(
       InternalTaskClientProperties properties,
       ExternalTaskService externalTaskService,
+      RuntimeService runtimeService,
       BackoffStrategy backoffStrategy,
       ExecutorService executor) {
     setWorkerId(properties.getWorkerId());
@@ -30,6 +34,7 @@ public class InternalTaskClientConfigurationImpl extends InternalTaskClientPrope
     this.externalTaskService = externalTaskService;
     this.backoffStrategy = backoffStrategy;
     this.executor = executor;
+    this.runtimeService = runtimeService;
   }
 
   @Override
@@ -100,5 +105,20 @@ public class InternalTaskClientConfigurationImpl extends InternalTaskClientPrope
   public InternalTaskClientConfigurationBuilder withExecutor(ExecutorService executor) {
     this.executor = executor;
     return this;
+  }
+
+  @Override
+  public InternalTaskClientConfigurationBuilder withRuntimeService(RuntimeService runtimeService) {
+    this.runtimeService = runtimeService;
+    return this;
+  }
+
+  @Override
+  public RuntimeService getRuntimeService() {
+    return runtimeService;
+  }
+
+  public void setRuntimeService(RuntimeService runtimeService) {
+    this.runtimeService = runtimeService;
   }
 }

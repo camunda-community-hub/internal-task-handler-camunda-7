@@ -6,6 +6,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.camunda.bpm.engine.ExternalTaskService;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.community.extension.internalTaskHandler.builder.InternalTaskClientConfigurationBuilder;
 import org.camunda.community.extension.internalTaskHandler.impl.DefaultBackoffStrategy;
 import org.camunda.community.extension.internalTaskHandler.impl.InternalTaskClientConfigurationImpl;
@@ -31,13 +32,16 @@ public interface InternalTaskClientConfiguration {
   static InternalTaskClientConfiguration usingProperties(
       InternalTaskClientProperties properties,
       ExternalTaskService externalTaskService,
+      RuntimeService runtimeService,
       BackoffStrategy backoffStrategy,
       ExecutorService executor) {
     return new InternalTaskClientConfigurationImpl(
-        properties, externalTaskService, backoffStrategy, executor);
+        properties, externalTaskService, runtimeService, backoffStrategy, executor);
   }
 
   ExternalTaskService getExternalTaskService();
+
+  RuntimeService getRuntimeService();
 
   String getWorkerId();
 

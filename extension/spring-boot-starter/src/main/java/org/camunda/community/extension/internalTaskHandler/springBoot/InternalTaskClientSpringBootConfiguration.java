@@ -2,6 +2,7 @@ package org.camunda.community.extension.internalTaskHandler.springBoot;
 
 import java.util.concurrent.ExecutorService;
 import org.camunda.bpm.engine.ExternalTaskService;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.community.extension.internalTaskHandler.BackoffStrategy;
 import org.camunda.community.extension.internalTaskHandler.InternalTaskClient;
 import org.camunda.community.extension.internalTaskHandler.InternalTaskClientConfiguration;
@@ -21,16 +22,18 @@ public class InternalTaskClientSpringBootConfiguration extends InternalTaskClien
   @Bean
   public InternalTaskClient internalTaskClient(
       ExternalTaskService externalTaskService,
+      RuntimeService runtimeService,
       BackoffStrategy backoffStrategy,
       @Qualifier("internalTaskClientExecutor") ExecutorService executor) {
     return InternalTaskClient.create(
         InternalTaskClientConfiguration.usingProperties(
-            this, externalTaskService, backoffStrategy, executor));
+            this, externalTaskService, runtimeService, backoffStrategy, executor));
   }
 
   @Bean
-  public InternalTaskService internalTaskService(ExternalTaskService externalTaskService) {
-    return new InternalTaskServiceImpl(externalTaskService, this.getWorkerId());
+  public InternalTaskService internalTaskService(
+      ExternalTaskService externalTaskService, RuntimeService runtimeService) {
+    return new InternalTaskServiceImpl(externalTaskService, this.getWorkerId(), runtimeService);
   }
 
   @Bean

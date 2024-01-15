@@ -50,7 +50,9 @@ public class TopicSubscriptionManager implements Runnable {
     this.workerId = configuration.getWorkerId();
     this.maxTasks = configuration.getMaxTasks();
     this.lockDuration = configuration.getLockDuration();
-    this.internalTaskService = new InternalTaskServiceImpl(externalTaskService, workerId);
+    this.internalTaskService =
+        new InternalTaskServiceImpl(
+            externalTaskService, workerId, configuration.getRuntimeService());
     this.backoffStrategy = configuration.getBackoffStrategy();
     this.executor = configuration.getExecutor();
   }

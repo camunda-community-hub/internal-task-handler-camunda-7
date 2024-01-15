@@ -22,21 +22,29 @@ public interface InternalTaskService {
    * @param internalTask which lock will be extended
    * @param lockDuration specifies the lock duration in milliseconds
    */
-  void lock(InternalTask internalTask, long lockDuration);
+  default void lock(InternalTask internalTask, long lockDuration) {
+    lock(internalTask.getId(), lockDuration);
+  }
 
   /**
    * Unlocks a task and clears the tasks lock expiration time and worker id.
    *
    * @param internalTask which will be unlocked
    */
-  void unlock(InternalTask internalTask);
+  default void unlock(InternalTask internalTask) {
+    unlock(internalTask.getId());
+  }
+
+  void unlock(String internalTaskId);
 
   /**
    * Completes a task.
    *
    * @param internalTask which will be completed
    */
-  void complete(InternalTask internalTask);
+  default void complete(InternalTask internalTask) {
+    complete(internalTask.getId(), null, null);
+  }
 
   /**
    * Completes a task.
@@ -47,7 +55,9 @@ public interface InternalTaskService {
    *     variable name and its value. Map can consist of both typed and untyped variables. In any
    *     other case, the fields of the given object will be treated as result variables.
    */
-  void complete(InternalTask internalTask, Object variables);
+  default void complete(InternalTask internalTask, Object variables) {
+    complete(internalTask.getId(), variables, null);
+  }
 
   /**
    * Completes a task.
@@ -62,7 +72,9 @@ public interface InternalTaskService {
    *     variable name and its value. Map can consist of both typed and untyped variables. In any
    *     other case, the fields of the given object will be treated as result variables.
    */
-  void complete(InternalTask internalTask, Object variables, Object localVariables);
+  default void complete(InternalTask internalTask, Object variables, Object localVariables) {
+    complete(internalTask.getId(), variables, localVariables);
+  }
 
   /**
    * Completes a task.
@@ -92,12 +104,15 @@ public interface InternalTaskService {
    * @param retryTimeout specifies a timeout in milliseconds before the external task becomes
    *     available again for fetching. Must be &gt;= 0.
    */
-  void handleFailure(
+  default void handleFailure(
       InternalTask internalTask,
       String errorMessage,
       String errorDetails,
       int retries,
-      long retryTimeout);
+      long retryTimeout) {
+    handleFailure(
+        internalTask.getId(), errorMessage, errorDetails, retries, retryTimeout, null, null);
+  }
 
   /**
    * Reports a failure to execute a task. A number of retries and a timeout until the task can be
@@ -112,12 +127,14 @@ public interface InternalTaskService {
    * @param retryTimeout specifies a timeout in milliseconds before the external task becomes
    *     available again for fetching. Must be &gt;= 0.
    */
-  void handleFailure(
+  default void handleFailure(
       String internalTaskId,
       String errorMessage,
       String errorDetails,
       int retries,
-      long retryTimeout);
+      long retryTimeout) {
+    handleFailure(internalTaskId, errorMessage, errorDetails, retries, retryTimeout, null, null);
+  }
 
   /**
    * Reports a failure to execute a task. A number of retries and a timeout until the task can be
@@ -158,7 +175,9 @@ public interface InternalTaskService {
    * @param errorCode that indicates the predefined error. The error code is used to identify the
    *     BPMN error handler.
    */
-  void handleBpmnError(InternalTask internalTask, String errorCode);
+  default void handleBpmnError(InternalTask internalTask, String errorCode) {
+    handleBpmnError(internalTask.getId(), errorCode, null, null);
+  }
 
   /**
    * Reports a business error in the context of a running task. The error code must be specified to
@@ -169,7 +188,9 @@ public interface InternalTaskService {
    *     BPMN error handler.
    * @param errorMessage which will be passed when the BPMN error is caught
    */
-  void handleBpmnError(InternalTask internalTask, String errorCode, String errorMessage);
+  default void handleBpmnError(InternalTask internalTask, String errorCode, String errorMessage) {
+    handleBpmnError(internalTask.getId(), errorCode, errorMessage, null);
+  }
 
   /**
    * Reports a business error in the context of a running task. The error code must be specified to
@@ -185,8 +206,10 @@ public interface InternalTaskService {
    *     variables. In any other case, the fields of the given object will be treated as result
    *     variables.
    */
-  void handleBpmnError(
-      InternalTask internalTask, String errorCode, String errorMessage, Object variables);
+  default void handleBpmnError(
+      InternalTask internalTask, String errorCode, String errorMessage, Object variables) {
+    handleBpmnError(internalTask.getId(), errorCode, errorMessage, variables);
+  }
 
   /**
    * Reports a business error in the context of a running task. The error code must be specified to
@@ -211,7 +234,9 @@ public interface InternalTaskService {
    * @param internalTask which lock will be extended
    * @param newDuration specifies the new lock duration in milliseconds
    */
-  void extendLock(InternalTask internalTask, long newDuration);
+  default void extendLock(InternalTask internalTask, long newDuration) {
+    extendLock(internalTask.getId(), newDuration);
+  }
 
   /**
    * Extends the timeout of the lock by a given amount of time.
@@ -220,4 +245,6 @@ public interface InternalTaskService {
    * @param newDuration specifies the the new lock duration in milliseconds
    */
   void extendLock(String internalTaskId, long newDuration);
+
+  void setVariable(String executionId, String variableName, Object variableValue);
 }
