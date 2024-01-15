@@ -6,7 +6,7 @@ public interface InternalTaskService {
    * Locks a task by a given amount of time.
    *
    * <p>Note: This method should be used to lock external tasks that have been obtained without
-   * using the fetch & lock API.
+   * using the fetch and lock API.
    *
    * @param internalTaskId the id of the external task whose lock will be extended
    * @param lockDuration specifies the lock duration in milliseconds
@@ -17,7 +17,7 @@ public interface InternalTaskService {
    * Locks a task by a given amount of time.
    *
    * <p>Note: This method should be used to lock external tasks that have been obtained without
-   * using the fetch & lock API.
+   * using the fetch and lock API.
    *
    * @param internalTask which lock will be extended
    * @param lockDuration specifies the lock duration in milliseconds
