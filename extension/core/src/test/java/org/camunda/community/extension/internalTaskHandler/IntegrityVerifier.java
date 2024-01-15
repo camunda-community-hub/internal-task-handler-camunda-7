@@ -21,7 +21,12 @@ public class IntegrityVerifier {
     imports.forEach(importName -> System.out.println("import " + importName + ";"));
     System.out.println();
     // interface declaration
-    System.out.println("public interface " + builderClassName + " {");
+    System.out.println(
+        "public interface "
+            + builderClassName
+            + " extends Builder<"
+            + interfaceClass.getSimpleName()
+            + "> {");
     // builder methods
     interfaceClassFields.forEach(
         (fieldName, fieldType) -> {
