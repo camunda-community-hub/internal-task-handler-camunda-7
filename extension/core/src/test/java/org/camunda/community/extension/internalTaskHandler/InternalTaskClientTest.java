@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
 import org.camunda.bpm.engine.history.HistoricProcessInstance;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.test.Deployment;
@@ -28,12 +29,18 @@ public class InternalTaskClientTest {
         InternalTaskClientSubscription.builder()
             .withTaskHandler(
                 (internalTask, internalTaskService) -> {
+                  TestDto testDto = internalTask.getVariable("testDto");
+                  assertThat(testDto).isNotNull();
+                  assertThat(testDto.getTestValue()).isEqualTo("test");
                   internalTaskService.complete(internalTask);
                 })
             .withTopicName("example")
             .build();
     client.subscribe(subscription);
-    ProcessInstance testProcess = runtimeService().startProcessInstanceByKey("TestProcess");
+    TestDto testDto = new TestDto();
+    testDto.setTestValue("test");
+    ProcessInstance testProcess =
+        runtimeService().startProcessInstanceByKey("TestProcess", Map.of("testDto", testDto));
     Thread.sleep(10000L);
     HistoricProcessInstance historicProcessInstance =
         historyService()
