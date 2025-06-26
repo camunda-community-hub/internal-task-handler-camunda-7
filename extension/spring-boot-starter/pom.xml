@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>internal-task-handler-spring-boot-starter</artifactId>
-
+  <name>Internal Task Handler Camunda 7 Spring Boot Starter</name>
   <dependencies>
     <dependency>
       <groupId>org.camunda.community.extension</groupId>

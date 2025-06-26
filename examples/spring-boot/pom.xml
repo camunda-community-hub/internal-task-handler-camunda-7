@@ -8,7 +8,7 @@
   </parent>
 
   <artifactId>internal-task-handler-example-spring-boot</artifactId>
-
+  <name>Internal Task Handler Camunda 7 Example Spring Boot</name>
   <dependencies>
     <dependency>
       <groupId>org.camunda.bpm.springboot</groupId>

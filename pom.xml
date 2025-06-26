@@ -15,7 +15,7 @@
   <artifactId>internal-task-handler-parent</artifactId>
   <version>1.3-SNAPSHOT</version>
   <packaging>pom</packaging>
-
+  <name>Internal Task Handler Camunda 7 Parent</name>
   <properties>
     <version.java>11</version.java>
     <maven.compiler.source>11</maven.compiler.source>
@@ -138,24 +138,21 @@
           <artifactId>spotless-maven-plugin</artifactId>
           <version>${plugin.version.spotless-maven-plugin}</version>
           <configuration>
-            <formats>
-              <format>
-                <includes>
-                  <include>*.md</include>
-                  <include>.gitignore</include>
-                </includes>
-                <trimTrailingWhitespace />
-                <endWithNewline />
-                <indent>
-                  <spaces>true</spaces>
-                  <spacesPerTab>2</spacesPerTab>
-                </indent>
-              </format>
-            </formats>
             <java>
               <googleJavaFormat />
             </java>
-            <pom />
+            <pom>
+              <sortPom>
+                <nrOfIndentSpace>2</nrOfIndentSpace>
+                <expandEmptyElements>false</expandEmptyElements>
+                <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
+              </sortPom>
+            </pom>
+            <markdown>
+              <includes>
+                <include>**/*.md</include>
+              </includes>
+            </markdown>
           </configuration>
         </plugin>
         <plugin>

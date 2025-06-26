@@ -13,5 +13,5 @@
   </modules>
 
   <artifactId>internal-task-handler-extension</artifactId>
-
+  <name>Internal Task Handler Camunda 7 Extension</name>
 </project>

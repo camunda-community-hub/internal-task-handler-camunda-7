@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_194elwt" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.24.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:process id="Process_0qmnq8i" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Handling variables required">
+      <bpmn:outgoing>Flow_0uu1c8f</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0uu1c8f" sourceRef="StartEvent_1" targetRef="Activity_0x2vb18" />
+    <bpmn:subProcess id="Activity_0x2vb18" name="Inner scope">
+      <bpmn:incoming>Flow_0uu1c8f</bpmn:incoming>
+      <bpmn:outgoing>Flow_0b6mqo2</bpmn:outgoing>
+      <bpmn:startEvent id="Event_05n1fa3">
+        <bpmn:outgoing>Flow_0pu31fs</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_0pu31fs" sourceRef="Event_05n1fa3" targetRef="Activity_0nu9lzz" />
+      <bpmn:endEvent id="Event_0mh8q4s">
+        <bpmn:incoming>Flow_1qmdcng</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_1qmdcng" sourceRef="Activity_0nu9lzz" targetRef="Event_0mh8q4s" />
+      <bpmn:serviceTask id="Activity_0nu9lzz" name="Handle set variable" camunda:asyncBefore="true" camunda:type="external" camunda:topic="set-variables">
+        <bpmn:extensionElements>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="myVarLocal" />
+          </camunda:inputOutput>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0pu31fs</bpmn:incoming>
+        <bpmn:outgoing>Flow_1qmdcng</bpmn:outgoing>
+        <bpmn:multiInstanceLoopCharacteristics camunda:collection="${collectionProvider.getCollection()}" camunda:elementVariable="item" />
+      </bpmn:serviceTask>
+    </bpmn:subProcess>
+    <bpmn:endEvent id="Event_1ojgawf" name="Handling variables done">
+      <bpmn:incoming>Flow_0b6mqo2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0b6mqo2" sourceRef="Activity_0x2vb18" targetRef="Event_1ojgawf" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0qmnq8i">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="159" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="153" y="202" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ojgawf_di" bpmnElement="Event_1ojgawf">
+        <dc:Bounds x="712" y="159" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="694" y="202" width="72" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00h3s29_di" bpmnElement="Activity_0x2vb18" isExpanded="true">
+        <dc:Bounds x="285" y="77" width="350" height="200" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_05n1fa3_di" bpmnElement="Event_05n1fa3">
+        <dc:Bounds x="325.3333333333333" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0mh8q4s_di" bpmnElement="Event_0mh8q4s">
+        <dc:Bounds x="582" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1wnpeay_di" bpmnElement="Activity_0nu9lzz">
+        <dc:Bounds x="420" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0pu31fs_di" bpmnElement="Flow_0pu31fs">
+        <di:waypoint x="361" y="177" />
+        <di:waypoint x="420" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qmdcng_di" bpmnElement="Flow_1qmdcng">
+        <di:waypoint x="520" y="177" />
+        <di:waypoint x="582" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uu1c8f_di" bpmnElement="Flow_0uu1c8f">
+        <di:waypoint x="215" y="177" />
+        <di:waypoint x="285" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0b6mqo2_di" bpmnElement="Flow_0b6mqo2">
+        <di:waypoint x="635" y="177" />
+        <di:waypoint x="712" y="177" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

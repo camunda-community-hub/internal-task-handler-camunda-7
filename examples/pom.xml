@@ -12,6 +12,6 @@
   <modules>
     <module>spring-boot</module>
   </modules>
-
+  <name>Internal Task Handler Examples Parent</name>
 
 </project>
