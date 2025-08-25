@@ -125,6 +125,7 @@ public class TopicSubscriptionManager implements Runnable {
               subscription.getLockDuration() == null
                   ? lockDuration.getSeconds() * 1000
                   : subscription.getLockDuration().getSeconds() * 1000);
+      topic.enableCustomObjectDeserialization();
       setIfPresent(subscription.getBusinessKey(), topic::businessKey);
       setIfPresent(subscription.getVariables(), topic::variables);
       setIfPresent(

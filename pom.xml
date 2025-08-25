@@ -8,12 +8,12 @@
   <parent>
     <groupId>org.camunda.community</groupId>
     <artifactId>community-hub-release-parent</artifactId>
-    <version>1.4.4</version>
+    <version>2.1.0</version>
   </parent>
 
   <groupId>org.camunda.community.extension</groupId>
   <artifactId>internal-task-handler-parent</artifactId>
-  <version>1.1.2-SNAPSHOT</version>
+  <version>1.2.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -24,19 +24,18 @@
     <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     <project.build.resourceEncoding>${encoding}</project.build.resourceEncoding>
     <!-- versions -->
-    <version.camunda>7.20.0</version.camunda>
-    <version.springBoot>3.2.1</version.springBoot>
-    <version.camunda-bpm-assert>15.0.0</version.camunda-bpm-assert>
+    <version.camunda>7.23.0</version.camunda>
+    <version.springBoot>3.5.5</version.springBoot>
     <!-- maven plugins (not managed by parent) -->
-    <plugin.version.function-maven-plugin>0.11.0</plugin.version.function-maven-plugin>
-    <plugin.version.maven-enforcer-plugin>3.4.1</plugin.version.maven-enforcer-plugin>
-    <plugin.version.maven-install-plugin>3.1.1</plugin.version.maven-install-plugin>
+    <plugin.version.function-maven-plugin>0.11.1</plugin.version.function-maven-plugin>
+    <plugin.version.maven-enforcer-plugin>3.6.1</plugin.version.maven-enforcer-plugin>
+    <plugin.version.maven-install-plugin>3.1.4</plugin.version.maven-install-plugin>
     <plugin.version.maven-resources-plugin>3.2.0</plugin.version.maven-resources-plugin>
-    <plugin.version.maven-shade-plugin>3.5.1</plugin.version.maven-shade-plugin>
-    <plugin.version.maven-surefire-plugin>3.2.5</plugin.version.maven-surefire-plugin>
-    <plugin.version.spotless-maven-plugin>2.42.0</plugin.version.spotless-maven-plugin>
+    <plugin.version.maven-shade-plugin>3.6.0</plugin.version.maven-shade-plugin>
+    <plugin.version.maven-surefire-plugin>3.5.3</plugin.version.maven-surefire-plugin>
+    <plugin.version.spotless-maven-plugin>2.46.1</plugin.version.spotless-maven-plugin>
     <plugin.version.maven-war-plugin>3.4.0</plugin.version.maven-war-plugin>
-    <plugin.version.maven-site-plugin>3.12.1</plugin.version.maven-site-plugin>
+    <plugin.version.maven-site-plugin>3.21.0</plugin.version.maven-site-plugin>
   </properties>
 
   <dependencyManagement>
@@ -66,9 +65,9 @@
         <version>${version.camunda}</version>
       </dependency>
       <dependency>
-        <groupId>org.camunda.bpm.assert</groupId>
+        <groupId>org.camunda.bpm</groupId>
         <artifactId>camunda-bpm-assert</artifactId>
-        <version>${version.camunda-bpm-assert}</version>
+        <version>${version.camunda}</version>
       </dependency>
       <dependency>
         <groupId>org.camunda.community.extension</groupId>
