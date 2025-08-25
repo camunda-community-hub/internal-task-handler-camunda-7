@@ -17,16 +17,15 @@
   <packaging>pom</packaging>
 
   <properties>
-    <version.java>11</version.java>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <version.java>17</version.java>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <encoding>UTF-8</encoding>
     <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     <project.build.resourceEncoding>${encoding}</project.build.resourceEncoding>
     <!-- versions -->
-    <version.camunda>7.19.0</version.camunda>
-    <version.springBoot>2.7.18</version.springBoot>
-    <version.camunda-bpm-assert>15.0.0</version.camunda-bpm-assert>
+    <version.camunda>7.23.0</version.camunda>
+    <version.springBoot>3.5.5</version.springBoot>
     <!-- maven plugins (not managed by parent) -->
     <plugin.version.function-maven-plugin>0.11.1</plugin.version.function-maven-plugin>
     <plugin.version.maven-enforcer-plugin>3.6.1</plugin.version.maven-enforcer-plugin>
@@ -66,9 +65,9 @@
         <version>${version.camunda}</version>
       </dependency>
       <dependency>
-        <groupId>org.camunda.bpm.assert</groupId>
+        <groupId>org.camunda.bpm</groupId>
         <artifactId>camunda-bpm-assert</artifactId>
-        <version>${version.camunda-bpm-assert}</version>
+        <version>${version.camunda}</version>
       </dependency>
       <dependency>
         <groupId>org.camunda.community.extension</groupId>
