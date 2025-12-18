@@ -25,7 +25,7 @@
     <project.build.resourceEncoding>${encoding}</project.build.resourceEncoding>
     <!-- versions -->
     <version.camunda>7.24.0</version.camunda>
-    <version.springBoot>3.5.9</version.springBoot>
+    <version.springBoot>4.0.1</version.springBoot>
     <!-- maven plugins (not managed by parent) -->
     <plugin.version.function-maven-plugin>1.0.0</plugin.version.function-maven-plugin>
     <plugin.version.maven-enforcer-plugin>3.6.2</plugin.version.maven-enforcer-plugin>
